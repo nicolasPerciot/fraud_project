@@ -1,0 +1,52 @@
+{% extends 'base_block.html' %}
+
+{% block title %}
+    SubscriptionPage
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div id="intro" class="row justify-content-center p-5">
+            <div class="p-5 -item-center col-9">
+                <div class="wrapper p-5">
+                    <svg class="rounded-5 p-5" viewBox="0 0 1800 600">
+                      <symbol id="s-text">
+                            <text text-anchor="middle"
+                                x="50%"
+                                y="35%"
+                                class="webcoderskull"
+                                >
+                                Result
+                            </text>
+
+                            <text text-anchor="middle"
+                                x="50%"
+                                y="68%"
+                                class="text--line"
+                                >
+                                {{ predict }}
+                            </text>
+
+                      </symbol>
+
+                      <g class="g-ants">
+                        <use xlink:href="#s-text"
+                          class="webcoderskull-1"></use>
+                        <use xlink:href="#s-text"
+                          class="webcoderskull-1"></use>
+                        <use xlink:href="#s-text"
+                          class="webcoderskull-1"></use>
+                        <use xlink:href="#s-text"
+                          class="webcoderskull-1"></use>
+                        <use xlink:href="#s-text"
+                          class="webcoderskull-1"></use>
+                      </g>
+
+
+                    </svg>
+                </div>
+             </div>
+        </div>
+    </div>
+{% endblock %}

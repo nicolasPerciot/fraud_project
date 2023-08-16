@@ -1,0 +1,26 @@
+{% extends 'base_block.html' %}
+
+{% block title %}
+    Predicate
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid" >
+        <div id="intro" class="row justify-content-center p-5">
+            <div class="p-5 -item-center col-9">
+                <h1 class="p-3  text-center text-secondary backcolor rounded-5">Predicate</h1>
+            </div>
+            <form method='post' action='{{ url_for('step_by_step') }} ' class="text-secondary backcolor  rounded-5 shadow-5-strong p-5 col-8">
+                <input type="hidden" id="feature_name" name="feature_name" value="{{ feature_name }}">
+                {{ feature|safe }}
+                
+                    <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block">Valider</button>
+            </form>
+        </div>
+    </div>
+
+
+
+{% endblock %}

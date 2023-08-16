@@ -1,0 +1,93 @@
+{% extends 'base_block.html' %}
+
+{% block title %}
+    Predicate
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid " id="intro" >
+
+        <div class="p-5" >
+            <div class="container-fluid p-5" >
+
+                <div class="card col-10 offset-1 mb-5 text-secondary backcolor">
+                    <div class="card-header">Statistiques des données d'entrainement.</div>
+                    <div class="card-body">
+                        <p>Les statistiques ont été réalisées sur le dataset après traitement des features.
+                             On a également suivi l'entrainement des modèles et on a monitoré leurs performances.
+                            </p>
+                    </div>
+                </div>
+
+                <div class="row" >
+                    <div class="card mb-5 col-5 me-5 ms-5 m-auto text-secondary backcolor">
+                        <div class="card-header">Boîtes à moustache des variables continues du dataset</div>
+                            <div class="card-body">
+                                <img src="../static/media/dist_ve_bm.png" alt="Boîte à moustache des varibales quantitatives continues du dataset" class="card-img-top imgcard">
+                                <p>On observe que les variables quantitatives sont largement distribuées et ne suivent pas une loi normale.</p>
+                            </div>
+                    </div>
+
+                    <div class="card mb-5 col-5 me-5 ms-5 m-auto text-secondary backcolor">
+                        <div class="card-header">Histogrammes des varaibles continues du dataset sans les valeurs extrèmes</div>
+                        <div class="card-body">
+                            <img src="../static/media/dist_sve.png" alt="histogrammes pour les différentes valeurs des features quantiatives avec les valeurs extrèmes." class="card-img-top imgcard">
+                            <p>Après avoir retiré les valeurs extrèmes en supprimant les données inférieures au Pc 5 et suppérieures au Pc 95, on ne rétablit pas une distribution normale. Cela implique d’écarter l’utilisation d’un test non paramétrique (qui ne se basent pas sur des distributions statistiques) pour réaliser l’apprentissage.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="card mb-5 col-5 me-5 ms-5 m-auto text-secondary backcolor">
+                        <div class="card-header">Matrice de corellation des variables </div>
+                            <div class="card-body">
+                                <img src="../static/media/correl.png" alt="Matrice de corellation des variables quantitatives du dataset" class="card-img-top imgcard">
+                                <p>On observe par ailleurs que les champs ‘amount’ et ‘step’ sont corrélés avec le champ Target, ce qui justifie une pondération plus importante lors de l’entrainement.</p>
+                                <p>On observe que les champs ‘oldbalanceOrg', 'newbalanceOrig', 'oldbalanceDest', 'newbalanceDest' ne présentent pas de corrélations avec la variable Target. Ces champs peuvent donc être sortis du dataset d’entrainement.</p>
+                            </div>
+                    </div>
+
+                    <div class="card mb-5 col-5 me-5 ms-5 m-auto text-secondary backcolor">
+                        <div class="card-header">Histogramme des répratition des enregistrement dans les classes de la varible 'type'</div>
+                        <div class="card-body">
+                            <img src="../static/media/type_class.png" alt="histogrammes pour la répartition des class pour la varible type" class="card-img-top imgcard">
+                            <p>La variable ‘type’ présente un pattern plus intéressant et elle doit être intégrée au dataset d’entrainement. Elle présente des variations significatives au regard du dataset entier.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="row ">
+                <table class="table text-secondary bg-black border-white col-sm-10">
+                    <thead>
+                        <tr>
+                            {%for col in colonnes%}
+                            <th class="col-1">{{col}}</th>
+                            {%endfor%}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for ligne in lignes%}
+                        <tr>
+                            <td>{{ ligne.algo }}</td>
+                            <td>{{ ligne.conditions }}</td>
+                            <td>{{ ligne.bests_params }}</td>
+                            <td>{{ ligne.tp }}</td>
+                            <td>{{ ligne.fn }}</td>
+                            <td>{{ ligne.fp }}</td>
+                            <td>{{ ligne.prop_fp }}</td>
+                            <td>{{ ligne.accuracy }}</td>
+                            <td>{{ ligne.recall }}</td>
+                            <td>{{ ligne.roc }}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base_block.html' %}
+
+{% block title %}
+    Predicate
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid" >
+        <div id="intro" class="row justify-content-center p-5">
+            <div class="p-5 -item-center col-9">
+                <h1 class="p-3  text-center text-secondary backcolor rounded-5">Predicate</h1>
+            </div>
+            <form method='post' action='{{ url_for('predicate_simple_post') }} ' class="text-secondary backcolor  rounded-5 shadow-5-strong p-5 col-8">
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="step">Step</label>
+                    <input type="text" id="step" name="step" class="form-control" />
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="type">Type</label>
+                    <input type="text" id="type" name="type" class="form-control" />
+                    
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="amount">Amount</label>
+                    <input type="text" id="amount" name="amount" class="form-control" />
+                    
+                </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block">Valider</button>
+                </form>
+        </div>
+    </div>
+
+
+
+{% endblock %}

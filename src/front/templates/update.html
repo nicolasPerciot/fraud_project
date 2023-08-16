@@ -1,0 +1,70 @@
+{% extends 'base_block.html' %}
+
+{% block title %}
+    update
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid" >
+        <div id="intro" class="row justify-content-center p-5">
+            <div class="p-5 -item-center col-9">
+                <h1 class="p-3  text-center text-secondary backcolor rounded-5">Update</h1>
+            </div>
+            <form class="text-secondary backcolor  rounded-5 shadow-5-strong p-5 col-8" action=" {{ url_for('update_post') }} " method="post">
+                
+                <input type="hidden" id="id" name="id" value="{{ trans_bean.transaction.get_id() }}">
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="step">Step</label>
+                    <input type="text" id="step" class="form-control" name="step" value="{{ trans_bean.transaction.get_step() }}"/>
+                </div>
+
+                {{ select|safe }}
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="amount">Amount</label>
+                    <input type="text" id="amount" class="form-control" name="amount" value="{{ trans_bean.transaction.get_amount() }}" />
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="account_name_orig">Account name origin</label>
+                    <input type="text" id="account_name_orig" class="form-control" name="account_name_orig" value="{{ trans_bean.account_orig.get_name() }}"/>
+
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="old_balance_orig">Old balance origin</label>
+                    <input type="text" id="old_balance_orig" class="form-control" name="old_balance_orig" value="{{ trans_bean.account_orig.get_old_balance() }}"/>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="new_balance_orig">New balance origin</label>
+                    <input type="text" id="new_balance_orig" class="form-control" name="new_balance_orig" value="{{ trans_bean.account_orig.get_new_balance() }}"/>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="account_name_dest">Name account dest</label>
+                    <input type="text" id="account_name_dest" class="form-control" name="account_name_dest" value="{{ trans_bean.account_dest.get_name() }}"/>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="old_balance_dest">Old balance Dest</label>
+                    <input type="text" id="old_balance_dest" class="form-control" name="old_balance_dest" value="{{ trans_bean.account_dest.get_old_balance() }}"/>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="new_balance_dest">New balance Dest</label>
+                    <input type="text" id="new_balance_dest" class="form-control" name="new_balance_dest" value="{{ trans_bean.account_dest.get_new_balance() }}"/>
+                </div>
+
+
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block" name="save">Sauvegarder</button>
+            </form>
+        </div>
+    </div>
+
+
+
+{% endblock %}

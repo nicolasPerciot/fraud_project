@@ -1,0 +1,59 @@
+{% extends 'base_block.html' %}
+{% block title %}
+    MainPage
+{% endblock %}
+
+{% block body %}
+
+  <div class="container-fluid">
+    <div id="intro" class="row justify-content-center p-5">
+          <div class=" p-4 border-white">
+            <div class="p-5 -item-center col-12">
+              <h1 class="p-3  text-center text-secondary backcolor rounded-5">Hello, {{ username }}</h1>
+            </div>
+            <table class="table text-secondary backcolor" >
+                <thead>
+                    <tr>
+                        <th scope="col">Step</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Account name origin</th>
+                        <th scope="col">Old balance origin</th>
+                        <th scope="col">New balance origin</th>
+                        <th scope="col">Name account dest</th>
+                        <th scope="col">Old balance Dest</th>
+                        <th scope="col">New balance Dest</th>
+                        <th scope="col">Fraud</th>
+                        <th scope="col">Modification/Suppression</th>
+                    </tr>
+                </thead>
+                <tbody class="border-secondary">
+                
+                  {%for trans in transactions%}
+                  <form method="post" action="{{ url_for('main_post') }}">
+                    <tr>
+                      <input type="hidden" name="id" value="{{ trans.transaction.get_id() }}">
+                      <td name="step">{{ trans.transaction.get_step() }}</td>
+                      <td name="type">{{ trans.transaction.get_trans_type() }}</td>
+                      <td name="amount">{{ trans.transaction.get_amount() }}</td>
+                      <td name="account_name_orig">{{ trans.account_orig.get_name() }}</td>
+                      <td name="old_balance_orig">{{ trans.account_orig.get_old_balance() }}</td>
+                      <td name="new_balance_orig">{{ trans.account_orig.get_new_balance() }}</td>
+                      <td name="account_name_dest">{{ trans.account_dest.get_name() }}</td>
+                      <td name="old_balance_dest">{{ trans.account_dest.get_old_balance() }}</td>
+                      <td name="new_balance_dest">{{ trans.account_dest.get_new_balance() }}</td>
+                      <td name="is_fraud">{{ trans.transaction.get_is_fraud() }}</td>
+                      <td><button type="submit" value="update" name="update" class="text-secondary col-10 offset-2"><i class="fa-solid fa-pen-to-square" width="30" height="30"></i></button>
+                          /<button type="submit" value="delete" name="delete" class="text-secondary col-10 offset-2"><i class="fa-solid fa-trash-can"></i></button> </td>
+                  </tr>
+                </form>
+                {%endfor%}
+                </tbody>
+            </table>
+        </div>
+      
+    </div>
+  </div>
+    
+
+{% endblock %}
